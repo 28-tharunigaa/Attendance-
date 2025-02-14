@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance Tracker</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin: 50px; }
+        table { width: 50%; margin: auto; border-collapse: collapse; }
+        th, td { padding: 10px; border: 1px solid rgb(28, 9, 84); text-align: center; }
+        th { background-color: #f4f4f4; }
+        input, button { padding: 10px; margin: 10px; }
+    </style>
+</head>
+<body>
+    <h2>Attendance Tracker</h2>
+    
+    <input type="text" id="nameInput" placeholder="Enter Name" required>
+    <button onclick="markAttendance()">Mark Attendance</button>
+
+    <h3>Attendance List</h3>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Date & Time</th>
+        </tr>
+        <tbody id="attendanceTable">
+            <!-- Attendance records will be added here dynamically -->
+        </tbody>
+    </table>
+
+    <script>
+        function markAttendance() {
+            let name = document.getElementById("nameInput").value;
+            if (name.trim() === "") {
+                alert("Please enter a name.");
+                return;
+            }
+
+            let table = document.getElementById("attendanceTable");
+            let row = table.insertRow();
+            let nameCell = row.insertCell(0);
+            let dateCell = row.insertCell(1);
+            
+            let now = new Date();
+            let formattedDate = now.toLocaleString();  // Format: MM/DD/YYYY, HH:MM:SS AM/PM
+
+            nameCell.innerHTML = name;
+            dateCell.innerHTML = formattedDate;
+
+            document.getElementById("nameInput").value = "";  // Clear input field
+        }
+    </script>
+</body>
+</html>
